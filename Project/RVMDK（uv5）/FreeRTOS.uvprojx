@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F40_41xxx,</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include;..\..\Libraries\CMSIS\Include;..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc;..\..\User;..\..\FreeRTOS\include;..\..\FreeRTOS\port\RVDS\ARM_CM4F;..\..\User\uart;..\..\User\key;..\..\User\led;..\..\User\FATFS;..\..\User\zhengdian_lcd</IncludePath>
+              <IncludePath>..\..\Libraries\CMSIS\Device\ST\STM32F4xx\Include;..\..\Libraries\CMSIS\Include;..\..\Libraries\STM32F4xx_StdPeriph_Driver\inc;..\..\User;..\..\FreeRTOS\include;..\..\FreeRTOS\port\RVDS\ARM_CM4F;..\..\User\uart;..\..\User\key;..\..\User\led;..\..\User\FATFS;..\..\User\zhengdian_lcd;..\..\User\CRC</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -804,6 +804,11 @@
               <FileName>bsp_modbus_usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\User\uart\bsp_modbus_usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>CRC16.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\User\CRC\CRC16.c</FilePath>
             </File>
           </Files>
         </Group>

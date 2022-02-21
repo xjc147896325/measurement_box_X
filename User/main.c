@@ -36,6 +36,9 @@
 
 /* 标准库头文件 */
 #include <string.h>
+
+/* CRC-16 MODBUS */
+#include "CRC16.h"
 /**************************** 任务句柄 ********************************/
 /* 
  * 任务句柄是一个指针，用于指向一个任务，当任务创建好之后，它就具有了一个任务句柄
@@ -60,6 +63,7 @@ static TaskHandle_t Uart_Task_Handle = NULL;/* KEY任务句柄 */
  */
 SemaphoreHandle_t DEBUG_BinarySem_Handle =NULL;
 SemaphoreHandle_t MODBUS_BinarySem_Handle =NULL;
+SemaphoreHandle_t SD_BinarySem_Handle =NULL;
 
 
 /******************************* 全局变量声明 ************************************/
@@ -70,6 +74,37 @@ SemaphoreHandle_t MODBUS_BinarySem_Handle =NULL;
 extern char Debug_Usart_Rx_Buf[DEBUG_USART_RBUFF_SIZE];
 extern char MODBUS1_Usart_Rx_Buf[MODBUS1_USART_RBUFF_SIZE];
 
+uint8_t MODBUS1[8][8] = {0x01, 0x03, 0x00, 0x00, 0x00, 0x01, 0x84, 0x0A,
+						 0x01, 0x03, 0x00, 0x00, 0x00, 0x02, 0xC4, 0x0B,
+						 0x01, 0x03, 0x00, 0x00, 0x00, 0x03, 0x05, 0xCB,
+						 0x01, 0x03, 0x00, 0x00, 0x00, 0x04, 0x44, 0x09,
+						 0x01, 0x03, 0x00, 0x00, 0x00, 0x05, 0x85, 0xC9,
+						 0x01, 0x03, 0x00, 0x00, 0x00, 0x06, 0xC5, 0xC8,
+						 0x01, 0x03, 0x00, 0x00, 0x00, 0x07, 0x04, 0x08,
+						 0x01, 0x03, 0x00, 0x00, 0x00, 0x08, 0x44, 0x0C}; //站号 01 功能码 03 起始地址 0000 寄存器数量 0001 CRC 840A
+
+/*----------------jide gai ------------------*/
+uint8_t MODBUS2[8][8] = {0x01, 0x03, 0x00, 0x00, 0x00, 0x01, 0x84, 0x0A,
+						 0x01, 0x03, 0x00, 0x00, 0x00, 0x02, 0xC4, 0x0B,
+						 0x01, 0x03, 0x00, 0x00, 0x00, 0x03, 0x05, 0xCB,
+						 0x01, 0x03, 0x00, 0x00, 0x00, 0x04, 0x44, 0x09,
+						 0x01, 0x03, 0x00, 0x00, 0x00, 0x05, 0x85, 0xC9,
+						 0x01, 0x03, 0x00, 0x00, 0x00, 0x06, 0xC5, 0xC8,
+						 0x01, 0x03, 0x00, 0x00, 0x00, 0x07, 0x04, 0x08,
+						 0x01, 0x03, 0x00, 0x00, 0x00, 0x08, 0x44, 0x0C}; //站号 01 功能码 03 起始地址 0000 寄存器数量 0001 CRC 840A
+
+uint8_t MODBUS3[8][8] = {0x01, 0x03, 0x00, 0x00, 0x00, 0x01, 0x84, 0x0A,
+						 0x01, 0x03, 0x00, 0x00, 0x00, 0x02, 0xC4, 0x0B,
+						 0x01, 0x03, 0x00, 0x00, 0x00, 0x03, 0x05, 0xCB,
+						 0x01, 0x03, 0x00, 0x00, 0x00, 0x04, 0x44, 0x09,
+						 0x01, 0x03, 0x00, 0x00, 0x00, 0x05, 0x85, 0xC9,
+						 0x01, 0x03, 0x00, 0x00, 0x00, 0x06, 0xC5, 0xC8,
+						 0x01, 0x03, 0x00, 0x00, 0x00, 0x07, 0x04, 0x08,
+						 0x01, 0x03, 0x00, 0x00, 0x00, 0x08, 0x44, 0x0C}; //站号 01 功能码 03 起始地址 0000 寄存器数量 0001 CRC 840A
+/*-------------------------------*/
+uint16_t channel_data_buf[3][8] = {0};
+						 
+						 
 /*
 *************************************************************************
 *                             函数声明
@@ -140,13 +175,19 @@ static void AppTaskCreate(void)
   
 	if(NULL != MODBUS_BinarySem_Handle)
 	printf("MODBUS_BinarySem_Handle二值信号量创建成功!\n");
+  
+	  /* 创建 BinarySem */
+	SD_BinarySem_Handle = xSemaphoreCreateBinary();	 
+  
+	if(NULL != SD_BinarySem_Handle)
+	printf("SD_BinarySem_Handle二值信号量创建成功!\n");
 	
   /* 创建Test_Task任务 */
 	xReturn = xTaskCreate((TaskFunction_t )Test_Task, /* 任务入口函数 */
 						(const char*    )"Test_Task",/* 任务名字 */
 						(uint16_t       )512,   /* 任务栈大小 */
 						(void*          )NULL,	/* 任务入口函数参数 */
-						(UBaseType_t    )2,	    /* 任务的优先级 */
+						(UBaseType_t    )5,	    /* 任务的优先级 */
 						(TaskHandle_t*  )&Test_Task_Handle);/* 任务控制块指针 */
 	if(pdPASS == xReturn)
 	printf("创建Test_Task任务成功!\r\n");
@@ -183,21 +224,46 @@ static void AppTaskCreate(void)
   * @ 返回值  ： 无
   ********************************************************************/
 static void Test_Task(void* parameter)
-{	 
+{	
+	BaseType_t xReturn = pdPASS;/* 定义一个创建信息返回值，默认为pdPASS */
+	FRESULT res_sd;                /* 文件操作结果 */
+	FIL fnew;													/* 文件对象 */
+	UINT fnum;            					  /* 文件成功读写数量 */
 	/* 文件系统初始化 */
 	FileSystem_Init();
-  /* 文件系统读写测试 */
-  FileSystem_Test();
-  while (1)
-  {
-    LED1_ON;
-    //printf("Test_Task Running,LED1_ON\r\n");
-    vTaskDelay(500);   /* 延时500个tick */
-    FileSystem_Test();
-    LED1_OFF;     
-    //printf("Test_Task Running,LED1_OFF\r\n");
-    vTaskDelay(500);   /* 延时500个tick */
-  }
+
+	printf("\r\n****** 新建txt... ******\r\n");	
+	res_sd = f_open(&fnew, "0:data0.txt",FA_CREATE_ALWAYS | FA_WRITE );
+	f_close(&fnew);
+	
+	///* 文件系统读写测试 */
+	//FileSystem_Test();
+	while (1)
+	{
+		xReturn = xSemaphoreTake(SD_BinarySem_Handle,/* 二值信号量句柄 */
+							  portMAX_DELAY); /* 等待时间 */
+		if(pdPASS == xReturn)
+		{
+			LED1_TOGGLE;
+			res_sd = f_open(&fnew, "0:data0.txt",FA_OPEN_EXISTING | FA_WRITE );
+			
+			/*---la san fen--*/
+			res_sd=f_lseek(&fnew,f_size(&fnew));
+			if(res_sd==FR_OK)
+			{
+			  printf("偏移完毕");
+			}
+			
+			res_sd=f_write(&fnew,channel_data_buf,sizeof(channel_data_buf),&fnum);
+			if(res_sd==FR_OK)
+			{
+			  printf("》文件写入成功，写入字节数据：%d\n",fnum);
+			  printf("》向文件写入的数据为：\r\n%s\r\n",(char*)channel_data_buf);
+			}
+			
+			f_close(&fnew);
+		}
+	}
 }
 
 /**********************************************************************
@@ -235,19 +301,102 @@ static void Uart_Task(void* parameter)
   ********************************************************************/
 static void MODBUS_Task(void* parameter)
 {	
+	uint8_t channel = 0, num = 0;
+    unsigned int  crc;
+    unsigned char crch, crcl;
+    uint8_t len = 7, data_len = 0;
+
+	
 	BaseType_t xReturn = pdPASS;/* 定义一个创建信息返回值，默认为pdPASS */
-  while (1)
-  {
-    //获取二值信号量 xSemaphore,没获取到则一直等待
-		xReturn = xSemaphoreTake(MODBUS_BinarySem_Handle,/* 二值信号量句柄 */
-                              portMAX_DELAY); /* 等待时间 */
-    if(pdPASS == xReturn)
-    {
-      LED3_TOGGLE;
-      printf("收到数据:%s\n",MODBUS1_Usart_Rx_Buf);
-      memset(MODBUS1_Usart_Rx_Buf,0,DEBUG_USART_RBUFF_SIZE);/* 清零 */
-    }
-  }
+	
+
+	while (1)
+	{
+		for(num = 0; num < 3; num++) {
+			for(channel = 0; channel < 8; channel ++) {
+				switch(num)
+				{
+					case(0):
+					{
+						for(int temp = 0; temp < 8; temp++) {
+							Usart_SendByte(MODBUS1_USART, MODBUS1[channel][temp]);
+						}
+						break;
+					}
+					case(1):
+					{
+						for(int temp = 0; temp < 8; temp++) {
+							Usart_SendByte(MODBUS1_USART, MODBUS2[channel][temp]);
+						}
+						break;
+					}
+					case(2):
+					{
+						for(int temp = 0; temp < 8; temp++) {
+							Usart_SendByte(MODBUS1_USART, MODBUS3[channel][temp]);
+						}
+						break;
+					}
+				}
+				
+				
+				
+				//获取二值信号量 xSemaphore,没获取到则一直等待
+				xReturn = xSemaphoreTake(MODBUS_BinarySem_Handle,/* 二值信号量句柄 */
+									  portMAX_DELAY); /* 等待时间 */
+				if(pdPASS == xReturn)
+				{
+					LED3_TOGGLE;
+					//printf("收到数据:%s \r\n",MODBUS1_Usart_Rx_Buf);
+			
+					if(MODBUS1_Usart_Rx_Buf[0]==0x01)                                                         //判断地址是不是01
+					{
+						crc = GetCRC16((uint8_t *)MODBUS1_Usart_Rx_Buf, len-2); //计算CRC校验值
+						crch = crc >> 8;
+						crcl = crc & 0xFF;
+						if ((MODBUS1_Usart_Rx_Buf[len-2] == crch) && (MODBUS1_Usart_Rx_Buf[len-1] == crcl)) //判断CRC校验是否正确
+						{
+							switch (MODBUS1_Usart_Rx_Buf[1]) //按功能码执行操作
+							{
+								case 0x03:  //读取一个或连续的寄存器
+								{
+									data_len = MODBUS1_Usart_Rx_Buf[2];
+									for(int temp = 0; temp < data_len; temp++)
+									{
+										channel_data_buf[num][channel] = channel_data_buf[num][channel] >> 8;
+										channel_data_buf[num][channel] |= MODBUS1_Usart_Rx_Buf[3+temp];
+									}
+									break;
+								}
+								
+								default:  //其它不支持的功能码
+									printf("err，功能码\r\n");
+									break;
+							}
+							printf("收到数据:%d \r\n",channel_data_buf[num][channel]);				 
+						}
+						else
+						{
+							printf("err, CRC\r\n");
+						}
+			
+					}
+					else
+					{
+						printf("err, 设备号\r\n");
+					}
+			
+					memset(MODBUS1_Usart_Rx_Buf,0,DEBUG_USART_RBUFF_SIZE);/* 清零 */
+				}
+				
+			}
+		}
+		/*-----完整的一组出来了-----*/
+		LED4_TOGGLE;
+		  //给出二值信号量 ，发送接收到新数据标志，供前台程序查询
+		xSemaphoreGive(SD_BinarySem_Handle);	//释放二值信号量
+
+	}
 }
 
 
@@ -281,7 +430,7 @@ static void BSP_Init(void)
   
 	/* 按键初始化	*/
 	Key_GPIO_Config();
-
+	
 	printf("Init finish\r\n");
 }
 
