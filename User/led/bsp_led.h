@@ -19,24 +19,24 @@
 //引脚定义
 /*******************************************************/
 //R 红色灯
-#define LED1_PIN                  GPIO_Pin_9                 
-#define LED1_GPIO_PORT            GPIOF                      
-#define LED1_GPIO_CLK             RCC_AHB1Periph_GPIOF
+#define LED1_PIN                  GPIO_Pin_1                 
+#define LED1_GPIO_PORT            GPIOC                      
+#define LED1_GPIO_CLK             RCC_AHB1Periph_GPIOC
 
 //Y 黄色灯
-//#define LED2_PIN                  GPIO_Pin_3                 
-//#define LED2_GPIO_PORT            GPIOC                      
-//#define LED2_GPIO_CLK             RCC_AHB1Periph_GPIOC
+#define LED2_PIN                  GPIO_Pin_2                 
+#define LED2_GPIO_PORT            GPIOC                      
+#define LED2_GPIO_CLK             RCC_AHB1Periph_GPIOC
 //
 //B 蓝色灯
-#define LED2_PIN                  GPIO_Pin_10                
-#define LED2_GPIO_PORT            GPIOF                       
-#define LED2_GPIO_CLK             RCC_AHB1Periph_GPIOF
+#define LED3_PIN                  GPIO_Pin_3                
+#define LED3_GPIO_PORT            GPIOC                       
+#define LED3_GPIO_CLK             RCC_AHB1Periph_GPIOC
 
 //W 白色灯
-//#define LED4_PIN                  GPIO_Pin_0                
-//#define LED4_GPIO_PORT            GPIOC                       
-//#define LED4_GPIO_CLK             RCC_AHB1Periph_GPIOC
+#define LED4_PIN                  GPIO_Pin_0                
+#define LED4_GPIO_PORT            GPIOC                       
+#define LED4_GPIO_CLK             RCC_AHB1Periph_GPIOC
 
 /************************************************************/
 
@@ -59,16 +59,16 @@
 					else		\
 					GPIO_ResetBits(LED2_GPIO_PORT,LED2_PIN)
 
-//#define LED3(a)	if (a)	\
-//					GPIO_SetBits(LED3_GPIO_PORT,LED3_PIN);\
-//					else		\
-//					GPIO_ResetBits(LED3_GPIO_PORT,LED3_PIN)
-//
-//#define LED4(a)	if (a)	\
-//					GPIO_SetBits(LED4_GPIO_PORT,LED4_PIN);\
-//					else		\
-//					GPIO_ResetBits(LED4_GPIO_PORT,LED4_PIN)
-//
+#define LED3(a)	if (a)	\
+					GPIO_SetBits(LED3_GPIO_PORT,LED3_PIN);\
+					else		\
+					GPIO_ResetBits(LED3_GPIO_PORT,LED3_PIN)
+
+#define LED4(a)	if (a)	\
+					GPIO_SetBits(LED4_GPIO_PORT,LED4_PIN);\
+					else		\
+					GPIO_ResetBits(LED4_GPIO_PORT,LED4_PIN)
+
 
 /* 直接操作寄存器的方法控制IO */
 #define	digitalHi(p,i)			 {p->BSRRL=i;}		//设置为高电平
@@ -84,16 +84,16 @@
 #define LED2_OFF		digitalHi(LED2_GPIO_PORT,LED2_PIN)
 #define LED2_ON			digitalLo(LED2_GPIO_PORT,LED2_PIN)
 
-//#define LED3_TOGGLE		digitalToggle(LED3_GPIO_PORT,LED3_PIN)
-//#define LED3_OFF		digitalHi(LED3_GPIO_PORT,LED3_PIN)
-//#define LED3_ON			digitalLo(LED3_GPIO_PORT,LED3_PIN)
+#define LED3_TOGGLE		digitalToggle(LED3_GPIO_PORT,LED3_PIN)
+#define LED3_OFF		digitalHi(LED3_GPIO_PORT,LED3_PIN)
+#define LED3_ON			digitalLo(LED3_GPIO_PORT,LED3_PIN)
+
+#define LED4_TOGGLE		digitalToggle(LED4_GPIO_PORT,LED4_PIN)
+#define LED4_OFF		digitalHi(LED4_GPIO_PORT,LED4_PIN)
+#define LED4_ON			digitalLo(LED4_GPIO_PORT,LED4_PIN)
 //
-//#define LED4_TOGGLE		digitalToggle(LED3_GPIO_PORT,LED4_PIN)
-//#define LED4_OFF		digitalHi(LED3_GPIO_PORT,LED4_PIN)
-//#define LED4_ON			digitalLo(LED3_GPIO_PORT,LED4_PIN)
-//
-#define LED_OFF 		LED1_OFF;LED2_OFF
-#define LED_ON	 		LED1_ON;LED2_ON
+#define LED_OFF 		LED1_OFF;LED2_OFF;LED3_OFF;LED4_OFF
+#define LED_ON	 		LED1_ON;LED2_ON;LED3_ON;LED4_ON
 
 void LED_GPIO_Config(void);
 

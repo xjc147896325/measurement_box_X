@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<Workspace>
+  <ConfigDictionary>
+    
+  <CurrentConfigs><Project>STM32_UART/Debug</Project></CurrentConfigs></ConfigDictionary>
+  <Desktop>
+    <Static>
+      <Workspace>
+        <ColumnWidths>
+          
+          
+          
+          
+        <Column0>153</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+      </Workspace>
+      <Build>
+        
+        
+        
+        
+      <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>980</ColumnWidth1><ColumnWidth2>261</ColumnWidth2><ColumnWidth3>65</ColumnWidth3></Build>
+    <TerminalIO/><Debug-Log><ColumnWidth0>20</ColumnWidth0><ColumnWidth1>1019</ColumnWidth1></Debug-Log><Disassembly><MixedMode>1</MixedMode><CodeCovShow>1</CodeCovShow><InstrProfShow>1</InstrProfShow></Disassembly></Static>
+    <Windows>
+      
+      
+    <Wnd0>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-23909-9081</Identity>
+            <TabName>Workspace</TabName>
+            <Factory>Workspace</Factory>
+            <Session>
+              
+            <NodeDict><ExpandedNode>STM32_UART</ExpandedNode><ExpandedNode>STM32_UART/EVARM</ExpandedNode><ExpandedNode>STM32_UART/Output</ExpandedNode><ExpandedNode>STM32_UART/User</ExpandedNode><ExpandedNode>STM32_UART/confing</ExpandedNode><ExpandedNode>STM32_UART/confing/zimo.c</ExpandedNode></NodeDict></Session>
+          </Tab>
+        </Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd0><Wnd1>
+        <Tabs>
+          <Tab>
+            <Identity>TabID-9877-11595</Identity>
+            <TabName>Build</TabName>
+            <Factory>Build</Factory>
+            <Session/>
+          </Tab>
+        <Tab><Identity>TabID-4353-18809</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs>
+        
+      <SelectedTab>0</SelectedTab></Wnd1></Windows>
+    <Editor>
+      
+      
+      
+      
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\stm32f10x_it.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>2032</SelStart><SelEnd>2032</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Libraries\STM32F10x_StdPeriph_Driver\inc\stm32f10x_rcc.h</Filename><XPos>0</XPos><YPos>494</YPos><SelStart>21118</SelStart><SelEnd>21137</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Libraries\STM32F10x_StdPeriph_Driver\inc\stm32f10x_tim.h</Filename><XPos>0</XPos><YPos>594</YPos><SelStart>25545</SelStart><SelEnd>25545</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\systick.c</Filename><XPos>0</XPos><YPos>18</YPos><SelStart>57</SelStart><SelEnd>57</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\NVIC.c</Filename><XPos>25</XPos><YPos>12</YPos><SelStart>988</SelStart><SelEnd>997</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\FSMC.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>72</SelStart><SelEnd>72</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\rcc.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>67</SelStart><SelEnd>67</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\timer.c</Filename><XPos>0</XPos><YPos>74</YPos><SelStart>3362</SelStart><SelEnd>3362</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x5DF2;&#x5B89;&#x88C5;&#x7684;&#x8F6F;&#x4eF6;\IARforARM\arm\inc\c\intrinsics.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x5DF2;&#x5B89;&#x88C5;&#x7684;&#x8F6F;&#x4eF6;\IARforARM\arm\inc\c\stdio.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Libraries\STM32F10x_StdPeriph_Driver\inc\stm32f10x_adc.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Libraries\STM32F10x_StdPeriph_Driver\inc\stm32f10x_bkp.h</Filename><XPos>0</XPos><YPos>9</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\systick.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>59</SelStart><SelEnd>59</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x5DF2;&#x5B89;&#x88C5;&#x7684;&#x8F6F;&#x4eF6;\IARforARM\arm\inc\c\ystdio.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x5DF2;&#x5B89;&#x88C5;&#x7684;&#x8F6F;&#x4eF6;\IARforARM\arm\inc\c\yvals.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\draw.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>42</SelStart><SelEnd>42</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\TFT.c</Filename><XPos>0</XPos><YPos>22</YPos><SelStart>463</SelStart><SelEnd>463</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\FSMC.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>674</SelStart><SelEnd>674</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\led.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>31</SelStart><SelEnd>31</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Libraries\STM32F10x_StdPeriph_Driver\inc\misc.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\rcc.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>30</SelStart><SelEnd>30</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\EXTI.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>32</SelStart><SelEnd>32</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\NVIC.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>84</SelStart><SelEnd>84</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x5DF2;&#x5B89;&#x88C5;&#x7684;&#x8F6F;&#x4eF6;\IARforARM\arm\inc\c\stdint.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\stm32f10x.h</Filename><XPos>0</XPos><YPos>322</YPos><SelStart>22218</SelStart><SelEnd>22230</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\TFT.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>30</SelStart><SelEnd>30</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\timer.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>35</SelStart><SelEnd>35</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x5DF2;&#x5B89;&#x88C5;&#x7684;&#x8F6F;&#x4eF6;\IARforARM\arm\inc\c\xencoding_limits.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>233</SelStart><SelEnd>233</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>E:\&#x5DF2;&#x5B89;&#x88C5;&#x7684;&#x8F6F;&#x4eF6;\IARforARM\arm\inc\c\ycheck.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>0</SelStart><SelEnd>0</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\zimo.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>76</SelStart><SelEnd>76</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\EXTI.c</Filename><XPos>0</XPos><YPos>9</YPos><SelStart>997</SelStart><SelEnd>997</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\rs485.c</Filename><XPos>0</XPos><YPos>74</YPos><SelStart>4862</SelStart><SelEnd>4877</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\rs485.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>175</SelStart><SelEnd>186</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\stm32f10x_it.c</Filename><XPos>0</XPos><YPos>199</YPos><SelStart>7355</SelStart><SelEnd>7355</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\main.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>727</SelStart><SelEnd>727</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\usart.c</Filename><XPos>0</XPos><YPos>142</YPos><SelStart>8922</SelStart><SelEnd>8922</SelEnd></Tab><ActiveTab>35</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\usart.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>149</SelStart><SelEnd>149</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\zimo.c</Filename><XPos>0</XPos><YPos>80</YPos><SelStart>1259</SelStart><SelEnd>1259</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\draw.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>69</SelStart><SelEnd>69</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\led.c</Filename><XPos>0</XPos><YPos>21</YPos><SelStart>1374</SelStart><SelEnd>1374</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\CRC16.c</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>35</SelStart><SelEnd>35</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\confing\CRC16.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>109</SelStart><SelEnd>109</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\4.RS485\confing\main.c</Filename><XPos>0</XPos><YPos>4</YPos><SelStart>721</SelStart><SelEnd>721</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\include.h</Filename><XPos>0</XPos><YPos>0</YPos><SelStart>316</SelStart><SelEnd>316</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Positions>
+      
+      
+      
+      
+      
+    <Top><Row0><Sizes><Toolbar-00d0f0b8><key>iaridepm.enu1</key></Toolbar-00d0f0b8></Sizes></Row0><Row1><Sizes/></Row1></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>569</Bottom><Right>244</Right><x>-2</x><y>-2</y><xscreen>34</xscreen><yscreen>38</yscreen><sizeHorzCX>24890</sizeHorzCX><sizeHorzCY>52342</sizeHorzCY><sizeVertCX>180088</sizeVertCX><sizeVertCY>786501</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>112</Bottom><Right>1368</Right><x>-2</x><y>-2</y><xscreen>1370</xscreen><yscreen>114</yscreen><sizeHorzCX>1002928</sizeHorzCX><sizeHorzCY>157025</sizeHorzCY><sizeVertCX>24890</sizeVertCX><sizeVertCY>52342</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+  </Desktop>
+</Workspace>
+
+

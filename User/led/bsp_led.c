@@ -26,6 +26,8 @@ void LED_GPIO_Config(void)
 
 	/*开启LED相关的GPIO外设时钟*/
 	RCC_AHB1PeriphClockCmd ( LED1_GPIO_CLK|
+						   LED3_GPIO_CLK|
+						   LED4_GPIO_CLK|
 						   LED2_GPIO_CLK, ENABLE); 
 
 	/*选择要控制的GPIO引脚*/															   
@@ -49,10 +51,19 @@ void LED_GPIO_Config(void)
 	/*选择要控制的GPIO引脚*/															   
 	GPIO_InitStructure.GPIO_Pin = LED2_PIN;	
 	GPIO_Init(LED2_GPIO_PORT, &GPIO_InitStructure);	
+	
+	/*选择要控制的GPIO引脚*/															   
+	GPIO_InitStructure.GPIO_Pin = LED3_PIN;	
+	GPIO_Init(LED3_GPIO_PORT, &GPIO_InitStructure);	
+	
+	/*选择要控制的GPIO引脚*/															   
+	GPIO_InitStructure.GPIO_Pin = LED4_PIN;	
+	GPIO_Init(LED4_GPIO_PORT, &GPIO_InitStructure);	
 
 
 
 	/*关闭LED灯*/
 	LED_ON;		
+	LED_OFF;		
 }
 /*********************************************END OF FILE**********************/

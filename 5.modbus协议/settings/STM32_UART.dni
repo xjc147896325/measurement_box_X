@@ -1,0 +1,69 @@
+[InterruptLog]
+LogEnabled=0
+SumEnabled=0
+GraphEnabled=0
+ShowTimeLog=1
+ShowTimeSum=1
+SumSortOrder=0
+[Interrupts]
+Enabled=1
+[MemoryMap]
+Enabled=0
+Base=0
+UseAuto=0
+TypeViolation=1
+UnspecRange=1
+ActionState=1
+[TraceHelper]
+Enabled=0
+ShowSource=1
+[DebugChecksum]
+Checksum=1684191232
+[Exceptions]
+StopOnUncaught=_ 0
+StopOnThrow=_ 0
+[DisAssemblyWindow]
+NumStates=_ 1
+State 1=_ 1
+[InstructionProfiling]
+Enabled=_ 0
+[CodeCoverage]
+Enabled=_ 0
+[StackPlugin]
+Enabled=1
+OverflowWarningsEnabled=1
+WarningThreshold=90
+SpWarningsEnabled=1
+WarnHow=0
+UseTrigger=1
+TriggerName=main
+LimitSize=0
+ByteLimit=50
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
+[CallStackLog]
+Enabled=0
+[DriverProfiling]
+Enabled=0
+Mode=-774742982
+Graph=0
+Symbiont=0
+[Disassemble mode]
+mode=0
+[Breakpoints]
+Bp0=_ "STD_CODE" "{$PROJ_DIR$}.206.3@1" 0 0 0 0 "" 0 "" 0
+Bp1=_ "STD_CODE" "{$PROJ_DIR$}.1.1@1" 0 0 0 0 "" 0 "" 0
+Count=2
+[Aliases]
+A0=_ "F:\文件\ARMformIAR\6.timer\1.timer.TIM2\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\iar\startup_stm32f10x_hd.s" ""
+A1=_ "F:\文件\ARMformIAR\6.timer\1.timer.TIM2\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c" ""
+A2=_ "F:\文件\ARMformIAR\8.fsmc\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\iar\startup_stm32f10x_hd.s" ""
+A3=_ "F:\文件\ARMformIAR\8.fsmc\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c" ""
+A4=_ "F:\文件\ARMformIAR\8.fsmc\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_exti.c" ""
+Count=5
+SuppressDialog=1

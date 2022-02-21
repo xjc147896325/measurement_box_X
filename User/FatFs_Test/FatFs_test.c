@@ -15,8 +15,8 @@ FIL fnew;													/* 文件对象 */
 FRESULT res_sd;                /* 文件操作结果 */
 UINT fnum;            					  /* 文件成功读写数量 */
 BYTE ReadBuffer[1024]={0};        /* 读缓冲区 */
-BYTE WriteBuffer[] =              /* 写缓冲区*/
-"欢迎使用野火STM32 F429开发板 今天是个好日子，新建文件系统测试文件\r\n";  
+BYTE WriteBuffer[] =  {"欢迎使用野火STM32 F429开发板 今天是个好日子，新建文件系统测试文件\r\n"};           /* 写缓冲区*/
+ 
 
 
 /**
@@ -29,7 +29,7 @@ BYTE WriteBuffer[] =              /* 写缓冲区*/
   */ 
 void FileSystem_Init(void)
 {
-  printf("\r\n****** 这是一个SD卡 文件系统实验 ******\r\n");
+  printf("\r\n****** sd test ******\r\n");
   
 	//在外部SPI Flash挂载文件系统，文件系统挂载时会对SPI设备初始化
 	res_sd = f_mount(&fs,"0:",1);
@@ -85,17 +85,17 @@ void FileSystem_Test(void)
 	res_sd = f_open(&fnew, "0:FatFs读写测试文件.txt",FA_CREATE_ALWAYS | FA_WRITE );
 	if ( res_sd == FR_OK )
 	{
-		//printf("》打开/创建FatFs读写测试文件.txt文件成功，向文件写入数据。\r\n");
+		printf("》打开/创建FatFs读写测试文件.txt文件成功，向文件写入数据。\r\n");
     /* 将指定存储区内容写入到文件内 */
 		res_sd=f_write(&fnew,WriteBuffer,sizeof(WriteBuffer),&fnum);
     if(res_sd==FR_OK)
     {
-      //printf("》文件写入成功，写入字节数据：%d\n",fnum);
-      //printf("》向文件写入的数据为：\r\n%s\r\n",WriteBuffer);
+      printf("》文件写入成功，写入字节数据：%d\n",fnum);
+      printf("》向文件写入的数据为：\r\n%s\r\n",WriteBuffer);
     }
     else
     {
-      //printf("！！文件写入失败：(%d)\n",res_sd);
+      printf("！！文件写入失败：(%d)\n",res_sd);
     }    
 		/* 不再读写，关闭文件 */
     f_close(&fnew);
@@ -103,7 +103,7 @@ void FileSystem_Test(void)
 	else
 	{	
 		LED1_ON;
-		//printf("！！打开/创建文件失败。\r\n");
+		printf("！！打开/创建文件失败。\r\n");
 	}
 	
 /*------------------- 文件系统测试：读测试 ------------------------------------*/

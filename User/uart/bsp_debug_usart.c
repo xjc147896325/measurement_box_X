@@ -12,7 +12,11 @@
   */ 
   
 #include "bsp_debug_usart.h"
-
+/* FreeRTOS头文件 */
+#include "FreeRTOS.h"
+#include "task.h"
+#include "queue.h"
+#include "semphr.h"
 
  /**
   * @brief  配置嵌套向量中断控制器NVIC
@@ -24,12 +28,12 @@ static void NVIC_Configuration(void)
 	NVIC_InitTypeDef NVIC_InitStructure;
 	
 	/* 嵌套向量中断控制器组选择 */
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+	//NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 	
 	/* 配置USART为中断源 */
 	NVIC_InitStructure.NVIC_IRQChannel = DEBUG_USART_IRQ;
 	/* 抢断优先级为1 */
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 7;
 	/* 子优先级为1 */
 	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
 	/* 使能中断 */
@@ -94,12 +98,91 @@ void Debug_USART_Config(void)
   /* 嵌套向量中断控制器NVIC配置 */
 	NVIC_Configuration();
   
-	/* 使能串口接收中断 */
-	USART_ITConfig(DEBUG_USART, USART_IT_RXNE, ENABLE);
+	// 开启 串口空闲IDEL 中断
+	USART_ITConfig(DEBUG_USART, USART_IT_IDLE, ENABLE);  
+  // 开启串口DMA接收
+	USART_DMACmd(DEBUG_USART, USART_DMAReq_Rx, ENABLE); 
 	
   /* 使能串口 */
 	USART_Cmd(DEBUG_USART, ENABLE);
 }
+
+
+char Debug_Usart_Rx_Buf[DEBUG_USART_RBUFF_SIZE];
+
+void Debug_DMA_Config(void)
+{
+  DMA_InitTypeDef DMA_InitStructure;
+
+  // 开启DMA时钟
+  RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_DMA2, ENABLE);
+  // DMA复位
+  DMA_DeInit(DEBUG_USART_DMA_STREAM);  
+  // 设置DMA通道
+  DMA_InitStructure.DMA_Channel = DEBUG_USART_RX_DMA_CHANNEL;  
+  /*设置DMA源：串口数据寄存器地址*/
+  DMA_InitStructure.DMA_PeripheralBaseAddr = (uint32_t)DEBUG_USART_DR_ADDRESS;
+  // 内存地址(要传输的变量的指针)
+  DMA_InitStructure.DMA_Memory0BaseAddr = (uint32_t)Debug_Usart_Rx_Buf;
+  // 方向：从内存到外设	
+  DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralToMemory;
+  // 传输大小	
+  DMA_InitStructure.DMA_BufferSize = DEBUG_USART_RBUFF_SIZE;
+  // 外设地址不增	    
+  DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+  // 内存地址自增
+  DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
+  // 外设数据单位	
+  DMA_InitStructure.DMA_PeripheralDataSize = 
+  DMA_PeripheralDataSize_Byte;
+  // 内存数据单位
+  DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Byte;	 
+  // DMA模式，一次或者循环模式
+  //DMA_InitStructure.DMA_Mode = DMA_Mode_Normal ;
+  DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;	
+  // 优先级：中	
+  DMA_InitStructure.DMA_Priority = DMA_Priority_VeryHigh; 
+  // 禁止内存到内存的传输
+  /*禁用FIFO*/
+  DMA_InitStructure.DMA_FIFOMode = DMA_FIFOMode_Disable;        
+  DMA_InitStructure.DMA_FIFOThreshold = DMA_FIFOThreshold_Full;    
+  /*存储器突发传输 1个节拍*/
+  DMA_InitStructure.DMA_MemoryBurst = DMA_MemoryBurst_Single;    
+  /*外设突发传输 1个节拍*/
+  DMA_InitStructure.DMA_PeripheralBurst = DMA_PeripheralBurst_Single;    
+  /*配置DMA2的数据流7*/		   
+  DMA_Init(DEBUG_USART_DMA_STREAM, &DMA_InitStructure);
+  // 清除DMA所有标志
+  DMA_ClearFlag(DEBUG_USART_DMA_STREAM,DMA_FLAG_TCIF2);
+  DMA_ITConfig(DEBUG_USART_DMA_STREAM, DMA_IT_TE, ENABLE);
+  // 使能DMA
+  DMA_Cmd (DEBUG_USART_DMA_STREAM,ENABLE);
+}
+
+extern SemaphoreHandle_t DEBUG_BinarySem_Handle;
+
+void Debug_DMA_Rx_Data(void)
+{
+  BaseType_t pxHigherPriorityTaskWoken;
+  // 关闭DMA ，防止干扰
+  DMA_Cmd(DEBUG_USART_DMA_STREAM, DISABLE);      
+  // 清DMA标志位
+  DMA_ClearFlag(DEBUG_USART_DMA_STREAM,DMA_FLAG_TCIF2);         
+  //  重新赋值计数值，必须大于等于最大可能接收到的数据帧数目
+  DMA_SetCurrDataCounter(DEBUG_USART_DMA_STREAM,DEBUG_USART_RBUFF_SIZE);     
+  DMA_Cmd(DEBUG_USART_DMA_STREAM, ENABLE);       
+  /* 
+  xSemaphoreGiveFromISR(SemaphoreHandle_t xSemaphore,
+                      BaseType_t *pxHigherPriorityTaskWoken);
+  */
+
+  //给出二值信号量 ，发送接收到新数据标志，供前台程序查询
+  xSemaphoreGiveFromISR(DEBUG_BinarySem_Handle,&pxHigherPriorityTaskWoken);	//释放二值信号量
+  //如果需要的话进行一次任务切换，系统会判断是否需要进行切换
+  portYIELD_FROM_ISR(pxHigherPriorityTaskWoken);
+
+}
+
 
 /*****************  发送一个字符 **********************/
 void Usart_SendByte( USART_TypeDef * pUSARTx, uint8_t ch)

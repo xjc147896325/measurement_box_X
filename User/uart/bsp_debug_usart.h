@@ -13,7 +13,13 @@
 * 串口1和6是      RCC_APB2PeriphClockCmd
 * 串口2/3/4/5是    RCC_APB1PeriphClockCmd
 */
-
+// 串口对应的DMA请求通道
+#define  DEBUG_USART_RX_DMA_CHANNEL      DMA_Channel_4
+#define  DEBUG_USART_DMA_STREAM    		 DMA2_Stream2
+// 外设寄存器地址
+#define  DEBUG_USART_DR_ADDRESS        		 (&DEBUG_USART->DR)
+// 一次发送的数据量
+#define  DEBUG_USART_RBUFF_SIZE            	 1000 
 
 #define DEBUG_USART_CLK                         RCC_APB2Periph_USART1
 #define DEBUG_USART_BAUDRATE                    115200  //串口波特率
@@ -40,9 +46,7 @@ void Usart_SendString( USART_TypeDef * pUSARTx, char *str);
 
 void Usart_SendHalfWord( USART_TypeDef * pUSARTx, uint16_t ch);
 
-void USART1_Init( uint32_t BaudRate);
-char *itoa(int value, char *string, int radix);
-void Serial_SendByte(USART_TypeDef *Serialx, uint8_t Data);
-void Serial_Send(USART_TypeDef *Serialx,const char *Data,...);
+void Debug_DMA_Config(void);
+void Debug_DMA_Rx_Data(void);
 
 #endif /* __USART1_H */

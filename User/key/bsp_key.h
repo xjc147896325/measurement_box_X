@@ -5,13 +5,15 @@
 
 //引脚定义
 /*******************************************************/
-#define KEY1_PIN                  GPIO_Pin_0                 
-#define KEY1_GPIO_PORT            GPIOA                      
-#define KEY1_GPIO_CLK             RCC_AHB1Periph_GPIOA
+#define KEY1_PIN                  GPIO_Pin_5                 
+#define KEY1_GPIO_PORT            GPIOC                      
+#define KEY1_GPIO_CLK             RCC_AHB1Periph_GPIOC
 
-#define KEY2_PIN                  GPIO_Pin_13                 
+#define KEY2_PIN                  GPIO_Pin_4                 
 #define KEY2_GPIO_PORT            GPIOC                      
 #define KEY2_GPIO_CLK             RCC_AHB1Periph_GPIOC
+
+    
 /*******************************************************/
 
  /** 按键按下标置宏
