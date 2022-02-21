@@ -102,8 +102,11 @@ uint8_t MODBUS3[8][8] = {0x01, 0x03, 0x00, 0x00, 0x00, 0x01, 0x84, 0x0A,
 						 0x01, 0x03, 0x00, 0x00, 0x00, 0x07, 0x04, 0x08,
 						 0x01, 0x03, 0x00, 0x00, 0x00, 0x08, 0x44, 0x0C}; //站号 01 功能码 03 起始地址 0000 寄存器数量 0001 CRC 840A
 /*-------------------------------*/
-uint16_t channel_data_buf[3][8] = {0};
-						 
+uint16_t channel_data_buf[3][50] = {0};
+char text1[] = "\r\n第一组：\r\n";
+char text2[] = "\r\n第二组：\r\n";
+char text3[] = "\r\n第三组：\r\n";
+
 						 
 /*
 *************************************************************************
@@ -247,20 +250,43 @@ static void Test_Task(void* parameter)
 			LED1_TOGGLE;
 			res_sd = f_open(&fnew, "0:data0.txt",FA_OPEN_EXISTING | FA_WRITE );
 			
-			/*---la san fen--*/
-			res_sd=f_lseek(&fnew,f_size(&fnew));
-			if(res_sd==FR_OK)
-			{
-			  printf("偏移完毕");
+			for(int temp = 0; temp < 3; temp++) {
+
+				res_sd=f_lseek(&fnew,f_size(&fnew));
+				if(res_sd==FR_OK)
+				{
+					printf("偏移完毕\r\n");
+				}
+				switch(temp) {
+					case(0): {
+						res_sd=f_write(&fnew,text1,sizeof(text1),&fnum);
+						break;
+					}
+					case(1): {
+						res_sd=f_write(&fnew,text2,sizeof(text2),&fnum);
+						break;
+					}
+					case(2): {
+						res_sd=f_write(&fnew,text3,sizeof(text3),&fnum);
+						break;
+					}
+				}
+				
+				res_sd=f_lseek(&fnew,f_size(&fnew));
+				if(res_sd==FR_OK)
+				{
+					printf("偏移完毕\r\n");
+				}
+				
+				res_sd=f_write(&fnew,channel_data_buf[temp],sizeof(channel_data_buf[temp]),&fnum);
+				
+				if(res_sd==FR_OK)
+				{
+				  printf("》文件写入成功，写入字节数据：%d\r\n",fnum);
+				  printf("》向文件写入的数据为：\r\n%s\r\n",(char*)channel_data_buf[temp]);
+				}
+				
 			}
-			
-			res_sd=f_write(&fnew,channel_data_buf,sizeof(channel_data_buf),&fnum);
-			if(res_sd==FR_OK)
-			{
-			  printf("》文件写入成功，写入字节数据：%d\n",fnum);
-			  printf("》向文件写入的数据为：\r\n%s\r\n",(char*)channel_data_buf);
-			}
-			
 			f_close(&fnew);
 		}
 	}
@@ -363,9 +389,12 @@ static void MODBUS_Task(void* parameter)
 									data_len = MODBUS1_Usart_Rx_Buf[2];
 									for(int temp = 0; temp < data_len; temp++)
 									{
-										channel_data_buf[num][channel] = channel_data_buf[num][channel] >> 8;
-										channel_data_buf[num][channel] |= MODBUS1_Usart_Rx_Buf[3+temp];
+										channel_data_buf[num][channel*2] = channel_data_buf[num][channel*2] >> 8;
+										channel_data_buf[num][channel*2] |= MODBUS1_Usart_Rx_Buf[3+temp];
 									}
+									channel_data_buf[num][channel*2+1] = 0x20 >> 8;
+									channel_data_buf[num][channel*2+1] |= 0x20 ;
+									
 									break;
 								}
 								
@@ -373,7 +402,7 @@ static void MODBUS_Task(void* parameter)
 									printf("err，功能码\r\n");
 									break;
 							}
-							printf("收到数据:%d \r\n",channel_data_buf[num][channel]);				 
+							printf("收到数据:%d \r\n",channel_data_buf[num][channel*2]);				 
 						}
 						else
 						{
