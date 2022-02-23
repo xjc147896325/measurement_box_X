@@ -810,6 +810,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\User\CRC\CRC16.c</FilePath>
             </File>
+            <File>
+              <FileName>bsp_hmi_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\User\uart\bsp_hmi_usart.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

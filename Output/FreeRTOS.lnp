@@ -47,6 +47,7 @@
 "..\..\output\fatfs_test.o"
 "..\..\output\bsp_modbus_usart.o"
 "..\..\output\crc16.o"
+"..\..\output\bsp_hmi_usart.o"
 "..\..\output\ff.o"
 "..\..\output\cc936.o"
 "..\..\output\syscall.o"
