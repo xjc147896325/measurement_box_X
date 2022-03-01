@@ -275,10 +275,10 @@ static void Test_Task(void* parameter)
 	/* 文件系统初始化 */
 	FileSystem_Init();
 
-	sprintf(file_name, "0:data%d.txt", file_num);
-	printf("\r\n****** 新建txt... ******\r\n");	
-	res_sd = f_open(&fnew, file_name,FA_CREATE_ALWAYS | FA_WRITE );
-	f_close(&fnew);
+	//sprintf(file_name, "0:data%d.txt", file_num);
+	//printf("\r\n****** 新建txt... ******\r\n");	
+	//res_sd = f_open(&fnew, file_name,FA_CREATE_ALWAYS | FA_WRITE );
+	//f_close(&fnew);
 	
 	///* 文件系统读写测试 */
 	//FileSystem_Test();
