@@ -80,41 +80,44 @@ extern uint8_t MODBUS1_Usart_Rx_Buf[MODBUS1_USART_RBUFF_SIZE];
 extern uint8_t HMI_Usart_Rx_Buf[HMI_USART_RBUFF_SIZE];
 
 uint8_t MODBUS1[8][8] = {0x01, 0x03, 0x00, 0x00, 0x00, 0x01, 0x84, 0x0A,
-						 0x01, 0x03, 0x00, 0x00, 0x00, 0x02, 0xC4, 0x0B,
-						 0x01, 0x03, 0x00, 0x00, 0x00, 0x03, 0x05, 0xCB,
-						 0x01, 0x03, 0x00, 0x00, 0x00, 0x04, 0x44, 0x09,
-						 0x01, 0x03, 0x00, 0x00, 0x00, 0x05, 0x85, 0xC9,
-						 0x01, 0x03, 0x00, 0x00, 0x00, 0x06, 0xC5, 0xC8,
-						 0x01, 0x03, 0x00, 0x00, 0x00, 0x07, 0x04, 0x08,
-						 0x01, 0x03, 0x00, 0x00, 0x00, 0x08, 0x44, 0x0C}; //站号 01 功能码 03 起始地址 0000 寄存器数量 0001 CRC 840A
+						 0x01, 0x03, 0x00, 0x00, 0x01, 0x01, 0x85, 0x9A,
+						 0x01, 0x03, 0x00, 0x00, 0x02, 0x01, 0x85, 0x6A,
+						 0x01, 0x03, 0x00, 0x00, 0x03, 0x01, 0x84, 0xFA,
+						 0x01, 0x03, 0x00, 0x00, 0x04, 0x01, 0x86, 0xCA,
+						 0x01, 0x03, 0x00, 0x00, 0x05, 0x01, 0x87, 0x5A,
+						 0x01, 0x03, 0x00, 0x00, 0x06, 0x01, 0x87, 0xAA,
+						 0x01, 0x03, 0x00, 0x00, 0x07, 0x01, 0x86, 0x3A}; //站号 01 功能码 03 起始地址 0000 寄存器数量 0001 CRC 840A
 
 /*---------------- ------------------*/
-uint8_t MODBUS2[8][8] = {0x02, 0x03, 0x00, 0x00, 0x00, 0x01, 0x84, 0x0A,
-						 0x02, 0x03, 0x00, 0x00, 0x00, 0x02, 0xC4, 0x0B,
-						 0x02, 0x03, 0x00, 0x00, 0x00, 0x03, 0x05, 0xCB,
-						 0x02, 0x03, 0x00, 0x00, 0x00, 0x04, 0x44, 0x09,
-						 0x02, 0x03, 0x00, 0x00, 0x00, 0x05, 0x85, 0xC9,
-						 0x02, 0x03, 0x00, 0x00, 0x00, 0x06, 0xC5, 0xC8,
-						 0x02, 0x03, 0x00, 0x00, 0x00, 0x07, 0x04, 0x08,
-						 0x02, 0x03, 0x00, 0x00, 0x00, 0x08, 0x44, 0x0C}; //站号 02 功能码 03 起始地址 0000 寄存器数量 0001 CRC 840A
+uint8_t MODBUS2[8][8] = {0x02, 0x03, 0x00, 0x00, 0x00, 0x01, 0x84, 0x39,
+						 0x02, 0x03, 0x00, 0x00, 0x01, 0x01, 0x85, 0xA9,
+						 0x02, 0x03, 0x00, 0x00, 0x02, 0x01, 0x85, 0x59,
+						 0x02, 0x03, 0x00, 0x00, 0x03, 0x01, 0x84, 0xC9,
+						 0x02, 0x03, 0x00, 0x00, 0x04, 0x01, 0x86, 0xF9,
+						 0x02, 0x03, 0x00, 0x00, 0x05, 0x01, 0x87, 0xC8,
+						 0x02, 0x03, 0x00, 0x00, 0x06, 0x01, 0x87, 0x99,
+						 0x02, 0x03, 0x00, 0x00, 0x07, 0x01, 0x86, 0x09}; //站号 02 功能码 03 起始地址 0000 寄存器数量 0001 CRC 840A
 
-uint8_t MODBUS3[8][8] = {0x03, 0x03, 0x00, 0x00, 0x00, 0x01, 0x84, 0x0A,
-						 0x03, 0x03, 0x00, 0x00, 0x00, 0x02, 0xC4, 0x0B,
-						 0x03, 0x03, 0x00, 0x00, 0x00, 0x03, 0x05, 0xCB,
-						 0x03, 0x03, 0x00, 0x00, 0x00, 0x04, 0x44, 0x09,
-						 0x03, 0x03, 0x00, 0x00, 0x00, 0x05, 0x85, 0xC9,
-						 0x03, 0x03, 0x00, 0x00, 0x00, 0x06, 0xC5, 0xC8,
-						 0x03, 0x03, 0x00, 0x00, 0x00, 0x07, 0x04, 0x08,
-						 0x03, 0x03, 0x00, 0x00, 0x00, 0x08, 0x44, 0x0C}; //站号 03 功能码 03 起始地址 0000 寄存器数量 0001 CRC 840A
+uint8_t MODBUS3[8][8] = {0x03, 0x03, 0x00, 0x00, 0x00, 0x01, 0x85, 0xE8,
+						 0x03, 0x03, 0x00, 0x00, 0x01, 0x01, 0x84, 0x78,
+						 0x03, 0x03, 0x00, 0x00, 0x02, 0x01, 0x84, 0x88,
+						 0x03, 0x03, 0x00, 0x00, 0x03, 0x01, 0x85, 0x18,
+						 0x03, 0x03, 0x00, 0x00, 0x04, 0x01, 0x87, 0x28,
+						 0x03, 0x03, 0x00, 0x00, 0x05, 0x01, 0x86, 0xB8,
+						 0x03, 0x03, 0x00, 0x00, 0x06, 0x01, 0x86, 0x48,
+						 0x03, 0x03, 0x00, 0x00, 0x07, 0x01, 0x87, 0xD8}; //站号 03 功能码 03 起始地址 0000 寄存器数量 0001 CRC 840A
 /*-------------------------------*/
 uint16_t channel_data_buf[3][50] = {0};
 char ascii_buf[100] = {0};
+char file_name[100] = {0};
 char text1[] = "\r\n第一组：\r\n";
 char text2[] = "\r\n第二组：\r\n";
 char text3[] = "\r\n第三组：\r\n";
 
 int8_t channel_num = 0;
 uint8_t display = 0;
+uint8_t save_flag = 0;
+uint8_t file_num = 0;
 						 
 /*
 *************************************************************************
@@ -264,14 +267,17 @@ static void Test_Task(void* parameter)
 	BaseType_t xReturn = pdPASS;/* 定义一个创建信息返回值，默认为pdPASS */
 	FRESULT res_sd;                /* 文件操作结果 */
 	FIL fnew;													/* 文件对象 */
-	UINT fnum;            					  /* 文件成功读写数量 */
+	UINT fnum;   
+	uint8_t flag = 0;
+	/* 文件成功读写数量 */
 	char cmd[80] = {0};
 	
 	/* 文件系统初始化 */
 	FileSystem_Init();
 
+	sprintf(file_name, "0:data%d.txt", file_num);
 	printf("\r\n****** 新建txt... ******\r\n");	
-	res_sd = f_open(&fnew, "0:data0.txt",FA_CREATE_ALWAYS | FA_WRITE );
+	res_sd = f_open(&fnew, file_name,FA_CREATE_ALWAYS | FA_WRITE );
 	f_close(&fnew);
 	
 	///* 文件系统读写测试 */
@@ -282,102 +288,88 @@ static void Test_Task(void* parameter)
 							  portMAX_DELAY); /* 等待时间 */
 		if(pdPASS == xReturn)
 		{
-			LED1_TOGGLE;
-			res_sd = f_open(&fnew, "0:data0.txt",FA_OPEN_EXISTING | FA_WRITE );
-			
-			for(int temp = 0; temp < 3; temp++) {
-
-				res_sd=f_lseek(&fnew,f_size(&fnew));
-				if(res_sd==FR_OK)
+			if(save_flag)
+			{
+				LED1_TOGGLE;
+				if(flag != file_num)
 				{
-					printf("偏移完毕\r\n");
+					printf("\r\n****** 新建txt... ******\r\n");	
+					res_sd = f_open(&fnew, file_name,FA_CREATE_ALWAYS | FA_WRITE );
+					f_close(&fnew);
+					flag = file_num;
+
 				}
-				switch(temp) {
-					case(0): {
-						res_sd=f_write(&fnew,text1,sizeof(text1),&fnum);
-						break;
-					}
-					case(1): {
-						res_sd=f_write(&fnew,text2,sizeof(text2),&fnum);
-						break;
-					}
-					case(2): {
-						res_sd=f_write(&fnew,text3,sizeof(text3),&fnum);
-						break;
-					}
-				}
+				res_sd = f_open(&fnew, file_name,FA_OPEN_EXISTING | FA_WRITE );
 				
-				res_sd=f_lseek(&fnew,f_size(&fnew));
-				if(res_sd==FR_OK)
-				{
-					printf("偏移完毕\r\n");
-				}
-				
-				sprintf(ascii_buf, "%d  %d  %d  %d  %d  %d  %d  %d\r\n", (int)channel_data_buf[temp][0], (int)channel_data_buf[temp][1], (int)channel_data_buf[temp][2], (int)channel_data_buf[temp][3], (int)channel_data_buf[temp][4], (int)channel_data_buf[temp][5], (int)channel_data_buf[temp][6], (int)channel_data_buf[temp][7]);
-				res_sd=f_write(&fnew,ascii_buf,sizeof(ascii_buf),&fnum);
-				memset(ascii_buf,0,sizeof(ascii_buf));/* 清零 */
+				for(int temp = 0; temp < 3; temp++) {
 
-				
-				if(display)
-				{
-					sprintf(cmd, "add 2,0,%d",(uint16_t)channel_data_buf[channel_num][0]/2621);
-					Usart_SendString(HMI_USART, cmd);
-					Usart_SendByte(HMI_USART, 0xFF);
-					Usart_SendByte(HMI_USART, 0xFF);
-					Usart_SendByte(HMI_USART, 0xFF);
-
-					sprintf(cmd, "add 2,1,%d",(uint16_t)channel_data_buf[channel_num][1]/2621);
-					Usart_SendString(HMI_USART, cmd);
-					Usart_SendByte(HMI_USART, 0xFF);
-					Usart_SendByte(HMI_USART, 0xFF);
-					Usart_SendByte(HMI_USART, 0xFF);
-
-					sprintf(cmd, "add 3,0,%d",(uint16_t)channel_data_buf[channel_num][2]/2621);
-					Usart_SendString(HMI_USART, cmd);
-					Usart_SendByte(HMI_USART, 0xFF);
-					Usart_SendByte(HMI_USART, 0xFF);
-					Usart_SendByte(HMI_USART, 0xFF);
-
-					sprintf(cmd, "add 3,1,%d",(uint16_t)channel_data_buf[channel_num][3]/2621);
-					Usart_SendString(HMI_USART, cmd);	
-					Usart_SendByte(HMI_USART, 0xFF);
-					Usart_SendByte(HMI_USART, 0xFF);
-					Usart_SendByte(HMI_USART, 0xFF);
+					res_sd=f_lseek(&fnew,f_size(&fnew));
+					if(res_sd==FR_OK)
+					{
+						printf("偏移完毕\r\n");
+					}
+					switch(temp) {
+						case(0): {
+							res_sd=f_write(&fnew,text1,sizeof(text1),&fnum);
+							break;
+						}
+						case(1): {
+							res_sd=f_write(&fnew,text2,sizeof(text2),&fnum);
+							break;
+						}
+						case(2): {
+							res_sd=f_write(&fnew,text3,sizeof(text3),&fnum);
+							break;
+						}
+					}
 					
-					sprintf(cmd, "add 4,0,%d",(uint16_t)channel_data_buf[channel_num][4]/2621);
-					Usart_SendString(HMI_USART, cmd);
-					Usart_SendByte(HMI_USART, 0xFF);
-					Usart_SendByte(HMI_USART, 0xFF);
-					Usart_SendByte(HMI_USART, 0xFF);
-
-					sprintf(cmd, "add 4,1,%d",(uint16_t)channel_data_buf[channel_num][5]/2621);
-					Usart_SendString(HMI_USART, cmd);
-					Usart_SendByte(HMI_USART, 0xFF);
-					Usart_SendByte(HMI_USART, 0xFF);
-					Usart_SendByte(HMI_USART, 0xFF);
-
-					sprintf(cmd, "add 5,0,%d",(int)channel_data_buf[channel_num][6]/2621);
-					Usart_SendString(HMI_USART, cmd);
-					Usart_SendByte(HMI_USART, 0xFF);
-					Usart_SendByte(HMI_USART, 0xFF);
-					Usart_SendByte(HMI_USART, 0xFF);
-
-					sprintf(cmd, "add 5,1,%d",(int)channel_data_buf[channel_num][7]/2621);
-					Usart_SendString(HMI_USART, cmd);
-					Usart_SendByte(HMI_USART, 0xFF);
-					Usart_SendByte(HMI_USART, 0xFF);
-					Usart_SendByte(HMI_USART, 0xFF);
+					res_sd=f_lseek(&fnew,f_size(&fnew));
+					if(res_sd==FR_OK)
+					{
+						printf("偏移完毕\r\n");
+					}
+					
+					sprintf(ascii_buf, "%d  %d  %d  %d  %d  %d  %d  %d\r\n", (int)channel_data_buf[temp][0], (int)channel_data_buf[temp][1], (int)channel_data_buf[temp][2], (int)channel_data_buf[temp][3], (int)channel_data_buf[temp][4], (int)channel_data_buf[temp][5], (int)channel_data_buf[temp][6], (int)channel_data_buf[temp][7]);
+					res_sd=f_write(&fnew,ascii_buf,sizeof(ascii_buf),&fnum);
+					memset(ascii_buf,0,sizeof(ascii_buf));/* 清零 */
+					if(res_sd==FR_OK)
+					{
+					  printf("》文件写入成功，写入字节数据：%d\r\n",fnum);
+					  //printf("》向文件写入的数据为：\r\n%s\r\n",(char*)channel_data_buf[temp]);
+					}
+					
 				}
-
-				if(res_sd==FR_OK)
-				{
-				  printf("》文件写入成功，写入字节数据：%d\r\n",fnum);
-				  //printf("》向文件写入的数据为：\r\n%s\r\n",(char*)channel_data_buf[temp]);
-				}
-				
+				f_close(&fnew);
 			}
-			f_close(&fnew);
+				
+			if(display)
+			{
+				sprintf(cmd, "add 2,0,%d",(uint16_t)channel_data_buf[channel_num/2][0+(channel_num%2)*4]/2621);
+				Usart_SendString(HMI_USART, cmd);
+				Usart_SendByte(HMI_USART, 0xFF);
+				Usart_SendByte(HMI_USART, 0xFF);
+				Usart_SendByte(HMI_USART, 0xFF);
+
+				sprintf(cmd, "add 2,1,%d",(uint16_t)channel_data_buf[channel_num/2][1+(channel_num%2)*4]/2621);
+				Usart_SendString(HMI_USART, cmd);
+				Usart_SendByte(HMI_USART, 0xFF);
+				Usart_SendByte(HMI_USART, 0xFF);
+				Usart_SendByte(HMI_USART, 0xFF);
+
+				sprintf(cmd, "add 2,2,%d",(uint16_t)channel_data_buf[channel_num/2][2+(channel_num%2)*4]/2621);
+				Usart_SendString(HMI_USART, cmd);
+				Usart_SendByte(HMI_USART, 0xFF);
+				Usart_SendByte(HMI_USART, 0xFF);
+				Usart_SendByte(HMI_USART, 0xFF);
+
+				sprintf(cmd, "add 2,3,%d",(uint16_t)channel_data_buf[channel_num/2][3+(channel_num%2)*4]/2621);
+				Usart_SendString(HMI_USART, cmd);	
+				Usart_SendByte(HMI_USART, 0xFF);
+				Usart_SendByte(HMI_USART, 0xFF);
+				Usart_SendByte(HMI_USART, 0xFF);
+			}
 		}
+
 	}
 }
 
@@ -418,6 +410,10 @@ static void Uart_Task(void* parameter)
 static void HMI_Task(void* parameter)
 {	
 	BaseType_t xReturn = pdPASS;/* 定义一个创建信息返回值，默认为pdPASS */
+	FRESULT res_sd;                /* 文件操作结果 */
+	FIL fnew;													/* 文件对象 */
+
+
 	while (1)
 	{
 		//获取二值信号量 xSemaphore,没获取到则一直等待
@@ -442,6 +438,15 @@ static void HMI_Task(void* parameter)
 					if(channel_num == -48 && HMI_Usart_Rx_Buf[3] == 0x00 && HMI_Usart_Rx_Buf[4] == 0xAA && HMI_Usart_Rx_Buf[5] == 0x55)
 					{
 						display = 0;
+						save_flag = 0;
+					}
+					if(HMI_Usart_Rx_Buf[2] == 0xFF && HMI_Usart_Rx_Buf[3] == 0x00 && HMI_Usart_Rx_Buf[4] == 0xAA && HMI_Usart_Rx_Buf[5] == 0x55)
+					{
+						save_flag = 1;
+						
+						file_num++;
+						sprintf(file_name, "0:data%d.txt", file_num);
+						
 					}
 				}
 			}
@@ -613,3 +618,5 @@ static void BSP_Init(void)
 }
 
 /********************************END OF FILE****************************/
+
+
